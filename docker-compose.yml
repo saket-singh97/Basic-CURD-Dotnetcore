@@ -1,0 +1,22 @@
+services:
+  employeeserviceapi:                        # Defines a service for the API
+    image: employeeservicedocker
+    build:
+      context: .                            # Specifies the directory for Dockerfile
+      dockerfile: ./Dockerfile
+    ports:                                  # Maps port 8001 on host to 8001 in container
+      - 8001:8001
+    depends_on:
+      - employeeserviceapidb                # Ensures database starts before API
+  employeeserviceapidb:
+    container_name: employeeservicedbcontainer
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 8002:1433                           # Maps SQL Server port for external access
+    environment:
+      - ACCEPT_EULA=Y                       # Sets environment variables
+      - SA_PASSWORD=Saket!Password
+    volumes:
+      - dbdata:/var/opt/mssql               # Mounts the volume for database persistence
+volumes:
+  dbdata:                                   # Declares the named volume
