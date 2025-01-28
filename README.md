@@ -26,3 +26,8 @@ Clone the project to your local machine using the following command:
 git clone https://github.com/saket-singh97/DOTNET-Core-CRUD-API-Dockerized-with-SQL-Server.git
 cd DOTNET-Core-CRUD-API-Dockerized-with-SQL-Server
 
+### 2. Load all the packages
+
+dotnet restore
+dotnet build
+
